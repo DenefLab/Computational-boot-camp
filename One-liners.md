@@ -64,20 +64,12 @@ Ctrl+a d {to detach a window, this will allow you to disconnect while the proces
 to return screen -r xxx {xxx is a number in case you have multiple at once}
 
 * Use of stream editor (sed)
-Purpose: 
-to remove or change files throughout, e.g. modify gene identifiers
+** Purpose: to remove or change files throughout, e.g. modify gene identifiers
 
-Usage: 
-sed –e ‘s/re/place/g’ inputfile > outputfile.sed {substitute (s) re with place throughout file (g)} {multiple commands possible, each time start with –e {to view but not save changes, do not put outputfile.sed}
-
-‘s/…/ {any 3 characters}
-
-‘/^$/d’ or ‘/\n/d’ {beginning of the line (), if nothing then delete line, so remove empty lines}
-
-‘s/.*/ {any character to end of the line}
-
-{start of line}
-
-$ {end of line}
-
-‘s/$/c/g’ {adds “c” at end of each line}
+** Usage: sed –e ‘s/re/place/g’ inputfile > outputfile.sed {substitute (s) re with place throughout file (g)} {multiple commands possible, each time start with –e {to view but not save changes, do not put outputfile.sed}
+** ‘s/…/ {any 3 characters}
+** ‘/^$/d’ or ‘/\n/d’ {beginning of the line (), if nothing then delete line, so remove empty lines}
+** ‘s/.*/ {any character to end of the line}
+** ^ {start of line}
+** $ {end of line}
+** ‘s/$/c/g’ {adds “c” at end of each line}
