@@ -59,6 +59,7 @@
 #### 1. Use of screen
 Purpose:
 * Open a subsession so that you can start a command then return to interactive command line while it runs
+
 Usage: 
 * screen {to activate}
 * Ctrl+a d {to detach a window, this will allow you to disconnect while the process keeps running}
