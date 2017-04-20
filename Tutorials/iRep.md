@@ -5,6 +5,8 @@ How to:
 
 ## 1. Map reads to bins
 Here is an example for three bins.
+
+a. Index the genome bin fasta files
 ```
 mkdir iRep
 cd iRep
@@ -12,11 +14,12 @@ mkdir bins
 bwa index ./bins/Bin_1-contigs.fa
 bwa index ./bins/Bin_2_refined-contigs.fa
 bwa index ./bins/Bin_2_Virus-contigs.fa
-
+```
+b. Map reads back to genome bins
+```
 bwa mem -t 5 ./bins/Bin_1-contigs.fa ../data/DNA-Pieter-16/*_R1.fastq ../data/DNA-Pieter-16/*_R2.fastq > ./map-DNA-Pieter-16/Bin_1.sam
 bwa mem -t 5 ./bins/Bin_2_refined-contigs.fa ../data/DNA-Pieter-16/*_R1.fastq ../data/DNA-Pieter-16/*_R2.fastq > ./map-DNA-Pieter-16/Bin_2_refined.sam
 bwa mem -t 5 ./bins/Bin_2_Virus-contigs.fa ../data/DNA-Pieter-16/*_R1.fastq ../data/DNA-Pieter-16/*_R2.fastq > ./map-DNA-Pieter-16/Bin_2_Virus.sam
-
 bwa mem -t 5 ./bins/Bin_1-contigs.fa ../data/DNA-Pieter-17/*_R1.fastq ../data/DNA-Pieter-17/*_R2.fastq > ./map-DNA-Pieter-17/Bin_1.sam
 bwa mem -t 5 ./bins/Bin_2_refined-contigs.fa ../data/DNA-Pieter-17/*_R1.fastq ../data/DNA-Pieter-17/*_R2.fastq > ./map-DNA-Pieter-17/Bin_2_refined.sam
 bwa mem -t 5 ./bins/Bin_2_Virus-contigs.fa ../data/DNA-Pieter-17/*_R1.fastq ../data/DNA-Pieter-17/*_R2.fastq > ./map-DNA-Pieter-17/Bin_2_Virus.sam
