@@ -1,0 +1,53 @@
+# 1. Compute ANI between bins with `pyani`
+Get it from [here](https://github.com/widdowquinn/pyani)
+
+Then run it as such:
+```
+average_nucleotide_identity.py -i bins -o bins/ANIb_output -m ANIb -g -v 2>&1 >error.log
+```
+with `bins` being your bin folder, `ANI_output` the output folder, `ANIb` being one of the four methods of ANI computation, and `-g` requesting for heatmap plot. `-v` runs it in verbose mode so that the `error.log` gets directed all this info.
+
+You can then use this R batch script (heatmap_ANI.R) to generate a prettier and more clear heatmap of the ANI. You need the `ggplot2` and `reshape` packages installed.
+```R
+Rscript heatmap_ANI.R path/to/ANIb_percentage_identity.tab
+```
+```R
+library("ggplot2")
+library("reshape")
+
+userprefs <- commandArgs(trailingOnly = TRUE)
+file_name <- userprefs[1]
+
+# read file
+data.ANI <- read.table(file_name)
+
+# cluster and order matrix
+row.order <- hclust(dist(data.ANI))$order # clustering
+col.order <- hclust(dist(t(data.ANI)))$order
+dat_new <- data.ANI[row.order, col.order] # re-order matrix accoring to clustering
+
+# melt to dataframe
+df_molten_dat <- melt(as.matrix(dat_new)) # reshape into dataframe
+names(df_molten_dat)[c(1:3)] <- c("bin1", "bin2", "ANI")
+
+# make plot
+p1 <- ggplot(data = df_molten_dat,
+       aes(x = bin1, y = bin2, fill = ANI)) + 
+  geom_raster() +
+  scale_fill_distiller(palette = "RdYlBu", limits=c(0.9, 1)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ggtitle("Clustered ggplot heatmap")+
+  geom_text(aes(label = round(ANI, 2)))+
+  theme(axis.title=element_text(size=16), strip.text.x=element_text(size=16),
+        legend.title=element_text(size=15), legend.text=element_text(size=14),
+        axis.text = element_text(size=14), title=element_text(size=20),
+        strip.background=element_rect(fill=adjustcolor("lightgray",0.2))
+  )
+
+# export plot
+png("Heatmap_ANI_highres.png", width=15, height=15, units="in", pointsize=12, res=500)
+p1
+dev.off()
+```
+Example output:
+![heatmap_ani_highres](https://cloud.githubusercontent.com/assets/19682548/25191058/4e652a9a-24fc-11e7-8921-75088aa6d7b7.png)
