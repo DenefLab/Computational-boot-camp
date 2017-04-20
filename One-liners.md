@@ -13,8 +13,8 @@
 * clear {clear screen}
 * cp filename directoryname/ {copy filename to other directory}
 * rm {delete file or directory}
-* *.* {all files}
-* *.faa {all files with extension .faa}
+* \*.\* {all files}
+* \*.faa {all files with extension .faa}
 * wc {get the number of lines, words and characters of a file}
 * chown vdenef:geomicr filename {change ownership user:group}
 * chmod ug+x {make file executable for user and group; chmod -R =recursive = make change in all files in subdirs as well; can also be applied for dir: if application tries to write in dir and permission is not +r for user:group => error (e.g. Phred, gzip, …}
