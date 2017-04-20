@@ -32,7 +32,7 @@
 * wget {to get everything from FTP foler at once}
 * note: highlighting text copies it into buffer. alt+click = paste at cursor
 
-### b. running software
+### B. running software
 * -help or –h {display help for command by adding behind command}
 * man xxx {display manual pages for command xxx}
 * apropos “xxx” {search for program that does xxx}
@@ -45,7 +45,7 @@
 * For running a lot of scripts and other programs your paths need to be defined. These are stored in .bashrc and other similarly named files.
 * time perl xxx {xxx is program, will calculate the time it takes to process}
 
-### c. some other handy shell commands to search and modify files
+### C. some other handy shell commands to search and modify files
 * grep –i “>” filename {show all lines starting with “>”; Add | more to pause per page}
 * grep –c “>” filename {count all lines starting with “>”}
 * cat inputfiles outputfile {concatenate files}
@@ -55,7 +55,7 @@
 * dos2unix {remove excel formatting MS-DOS formatted files; also mac2unix} -n -c mac file file.new 
 * ssh user@ip.address {secure shell connection to server}
 
-### d. Some specific applications
+### D. Some specific applications
 #### 1. Use of screen
 Purpose:
 * Open a subsession so that you can start a command then return to interactive command line while it runs
