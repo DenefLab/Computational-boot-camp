@@ -37,7 +37,7 @@
 * man xxx {display manual pages for command xxx}
 * apropos “xxx” {search for program that does xxx}
 * | {pipes the output from previous command to next, e.g. ls |more}
-* > outputfile {used to keep output and save in outputfile}
+* \> outputfile {used to keep output and save in outputfile}
 * ps –u <user> {shows processes active under user x}
 * kill # {forces quit of process with number # → number is shown using ps –u}
 * alias {list of defined alias for certain application, have to be added in bash. Can add by typing e.g. alias UBA=”cd /Volumes/XRAID/….” on commandline}
