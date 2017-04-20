@@ -66,7 +66,7 @@ Usage:
 
 #### 2. Use of stream editor (sed)
 Purpose: 
-*to remove or change files throughout, e.g. modify gene identifiers
+* to remove or change files throughout, e.g. modify gene identifiers
 
 Usage: 
 * sed –e ‘s/re/place/g’ inputfile > outputfile.sed {substitute (s) re with place throughout file (g)} {multiple commands possible, each time start with –e {to view but not save changes, do not put outputfile.sed}
