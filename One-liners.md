@@ -77,3 +77,46 @@ Usage:
 * ^ {start of line}
 * $ {end of line}
 * ‘s/$/c/g’ {adds “c” at end of each line}
+
+#### Cleanup directories
+This script goes through the directories in the current working directory and removes specific files. It first checks whether a specific file is present before removing other files. By changing the `-e` flag to `-d` it checks for the presence of a specific sub directory before removing the files with a designated pattern.
+```
+#!/bin/bash
+set -e
+for i in */; do
+echo $i
+cd $i
+        # Check if file *R1.fastq exists
+        if [ -e *.R1.fastq ]; then
+        # Remove fastqs except the ones with the derep_scythe_sickle_ pattern
+        ls *.fastq | grep -v "derep_scythe_sickle_*" | xargs rm
+   fi
+cd -
+done
+```
+
+#### Compress whole directory
+```
+tar -zcvf archive.tar.gz directory/ 
+```
+
+#### Read in lines from file and do something with them:
+```
+for sample in `cat SAMPLE_IDs`; do something; done
+```
+
+#### Rename fasta headers. This code will replace the header with contig_i with `i` going from `1` to number of contigs.
+```
+awk '/^>/{print ">contig_" ++i; next}{print}' < input.fasta > input-fixed.fasta
+```
+In order to have a list to map back the original contig names to the new ones (e.g. you have to import the binning associated with the individual fasta files in Anvi'o). `new_original_contig_list.tsv ` contains the new and original contig headers as well as the fasta file name (i.e. bin name). `new_contig_list.tsv` just contains the new contig header and the associated file/bin name. Adjust `input-fixed.fasta` to the correct file if necessary. `anvi-import-collection` can be directly applied with the `new_contig_list.tsv` file.
+```
+for files in `ls *.fa`; do
+	echo $files
+	dos2unix $files
+	grep ">" $files | sed "s/>//g" | awk -v file2="${files}" -F "\t" '{print $1 "\t" file2}' >> original_contig_list.tsv
+done
+grep ">" input-fixed.fasta | sed "s/>//g" > tmp
+paste tmp original_contig_list.tsv | column -s $'\t' -t > new_original_contig_list.tsv 
+awk '{print $1 "\t" $3}' new_original_contig_list.tsv | sed "s/\.fa//g"> new_contig_list.tsv
+```
