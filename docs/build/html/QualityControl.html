@@ -26,6 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Computational Boot Camp’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -61,16 +62,15 @@
 <h2>Trimming Adapters<a class="headerlink" href="#trimming-adapters" title="Permalink to this headline">¶</a></h2>
 <p>Adapters are synthetic sequences added to the beginning and ends of reads for sequencing. Because tehse sequences are not part of your experimental sample it is imiperitive that they are removed. If they are not completely removed they can contaminate you assemblies and appear downstream in contigs making results from you analysis not make sense and also useless.</p>
 </div>
-<div class="section" id="removing-poor-quality-reads">
-<h2>Removing poor quality reads<a class="headerlink" href="#removing-poor-quality-reads" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="removing-poor-quality-bases">
+<h2>Removing Poor Quality Bases<a class="headerlink" href="#removing-poor-quality-bases" title="Permalink to this headline">¶</a></h2>
 <p>A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score.</p>
-<p>A general overview of phred scores:
-![phred](/Tutorials/Screenshot_4.png)</p>
+<p>A general overview of phred scores:</p>
+<img alt="_images/Screenshot_4.png" src="_images/Screenshot_4.png" />
 <p>this quality information is found in fastq files which is why these are the files you will start with.</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
 </div>
 <div class="section" id="removing-replicate-reads">
-<h2>Removing replicate reads<a class="headerlink" href="#removing-replicate-reads" title="Permalink to this headline">¶</a></h2>
+<h2>Removing Replicate Reads<a class="headerlink" href="#removing-replicate-reads" title="Permalink to this headline">¶</a></h2>
 <p>Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present in the fastq files they need to be removed. Replicates can appear do to a biological sifnificance, but they are more often a result of a pcr bias. In this case it is better to be safe and just remove all duplicate reads.</p>
 </div>
 <div class="section" id="understanding-your-read-data">
@@ -90,9 +90,9 @@
 </div>
 <div class="section" id="fastqc-test-information">
 <h2>FastQC Test Information<a class="headerlink" href="#fastqc-test-information" title="Permalink to this headline">¶</a></h2>
-<p>Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the visual representations of this as well.
-Read Quality Plot
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+<p>Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the visual representations of this as well.</p>
+<div class="section" id="read-quality-plot">
+<h3>Read Quality Plot<a class="headerlink" href="#read-quality-plot" title="Permalink to this headline">¶</a></h3>
 <p>This is simpy a boxplot where the y-axis is the quality score and the x is the postion along the read.</p>
 <p>The first image is before QC:
 ![](Screenshot_2.png)</p>
@@ -101,7 +101,7 @@ Read Quality Plot
 <p>Here is the same sample after removing poor quality bases:
 [baseQual](screenshot_5.png)</p>
 <p>As you can see the vast majority of reads fall in the green along most of the read except for the very end. This is okay and we would be able to move forward.</p>
-<p>###</p>
+</div>
 </div>
 </div>
 
@@ -116,10 +116,13 @@ Read Quality Plot
 <li><a class="reference internal" href="#">Quality Control</a><ul>
 <li><a class="reference internal" href="#basic-example-workflow">Basic Example Workflow</a></li>
 <li><a class="reference internal" href="#trimming-adapters">Trimming Adapters</a></li>
-<li><a class="reference internal" href="#removing-poor-quality-reads">Removing poor quality reads</a></li>
-<li><a class="reference internal" href="#removing-replicate-reads">Removing replicate reads</a></li>
+<li><a class="reference internal" href="#removing-poor-quality-bases">Removing Poor Quality Bases</a></li>
+<li><a class="reference internal" href="#removing-replicate-reads">Removing Replicate Reads</a></li>
 <li><a class="reference internal" href="#understanding-your-read-data">Understanding Your Read Data</a></li>
-<li><a class="reference internal" href="#fastqc-test-information">FastQC Test Information</a></li>
+<li><a class="reference internal" href="#fastqc-test-information">FastQC Test Information</a><ul>
+<li><a class="reference internal" href="#read-quality-plot">Read Quality Plot</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -127,6 +130,7 @@ Read Quality Plot
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Computational Boot Camp&#8217;s documentation!</a></li>
   </ul></li>
 </ul>
 </div>

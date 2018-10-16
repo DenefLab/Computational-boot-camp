@@ -15,19 +15,19 @@ Trimming Adapters
 -----------------
 Adapters are synthetic sequences added to the beginning and ends of reads for sequencing. Because tehse sequences are not part of your experimental sample it is imiperitive that they are removed. If they are not completely removed they can contaminate you assemblies and appear downstream in contigs making results from you analysis not make sense and also useless.
 
-Removing poor quality reads
+Removing Poor Quality Bases
 ------------------------------
 A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score. 
 
 A general overview of phred scores:
-![phred](/Tutorials/Screenshot_4.png)
+
+.. image:: ./images/Screenshot_4.png
 
 this quality information is found in fastq files which is why these are the files you will start with.
 
-```
 
-Removing replicate reads
---------------------------
+Removing Replicate Reads
+-------------------------
 Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present in the fastq files they need to be removed. Replicates can appear do to a biological sifnificance, but they are more often a result of a pcr bias. In this case it is better to be safe and just remove all duplicate reads.
 
 Understanding Your Read Data
@@ -46,8 +46,9 @@ Not all sequencing data is created equal. They serve different purposes. For exa
 FastQC Test Information
 -----------------------------
 Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the visual representations of this as well.
+
 Read Quality Plot
------------------------------
+^^^^^^^^^^^^^^^^^
 
 This is simpy a boxplot where the y-axis is the quality score and the x is the postion along the read.
 
@@ -62,6 +63,4 @@ Here is the same sample after removing poor quality bases:
 [baseQual](screenshot_5.png)
 
 As you can see the vast majority of reads fall in the green along most of the read except for the very end. This is okay and we would be able to move forward.
-
-
-### 
+ 
