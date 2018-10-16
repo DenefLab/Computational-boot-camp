@@ -25,11 +25,7 @@ Adapters are synthetic sequences added to the beginning and ends of reads for se
 A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score. 
 
 A general overview of phred scores:
-<<<<<<< HEAD
-![phred](Screenshot_4.png)
-=======
-![phred](images/Screenshot_4.png)
->>>>>>> 1e3a7336ca863583174d33bed12c8e17edf8fdc1
+![phred](./Screenshot_4.png)
 
 this quality information is found in fastq files which is why these are the files you will start with.
 
@@ -59,7 +55,7 @@ Previously I have stated general patterns of sequencing data such as poor bases 
 This is simpy a boxplot where the y-axis is the quality score and the x is the postion along the read.
 
 The first image is before QC:
-![baseQual](Screenshot_2.png)
+[](Screenshot_2.png)
 
 Here you can easily see that the quality of the base calls in the beginning and end of the read are significantly lower than the quality of the base calls in the middle of the read.
 
