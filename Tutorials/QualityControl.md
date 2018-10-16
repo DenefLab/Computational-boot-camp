@@ -55,7 +55,7 @@ Previously I have stated general patterns of sequencing data such as poor bases 
 This is simpy a boxplot where the y-axis is the quality score and the x is the postion along the read.
 
 The first image is before QC:
-[](Screenshot_2.png)
+![](Screenshot_2.png)
 
 Here you can easily see that the quality of the base calls in the beginning and end of the read are significantly lower than the quality of the base calls in the middle of the read.
 
