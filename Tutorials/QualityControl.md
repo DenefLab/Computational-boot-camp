@@ -25,7 +25,7 @@ Adapters are synthetic sequences added to the beginning and ends of reads for se
 A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score. 
 
 A general overview of phred scores:
-![phred](/images/Screenshot_4.png)
+![phred](images/Screenshot_4.png)
 
 this quality information is found in fastq files which is why these are the files you will start with.
 
