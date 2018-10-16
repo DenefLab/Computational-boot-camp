@@ -62,7 +62,7 @@ This visualization is useful for evaluating the trimming of poor bases. Ideally 
 
 Here is the same sample after removing poor quality bases:
 
-.. image:: ./images/screenshot_5.png
+.. image:: ./images/Screenshot_5.png
 
 As you can see the vast majority of reads fall in the green along most of the read except for the very end. This is okay and we would be able to move forward.
  
