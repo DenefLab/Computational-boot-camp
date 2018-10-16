@@ -17,7 +17,7 @@ Adapters are synthetic sequences added to the beginning and ends of reads for se
 
 Removing Poor Quality Bases
 ------------------------------
-A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score. 
+A result of the sequencing technology is that bases towards the beginning and ends of reads suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score. 
 
 A general overview of phred scores:
 
@@ -28,7 +28,7 @@ this quality information is found in fastq files which is why these are the file
 
 Removing Replicate Reads
 -------------------------
-Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present in the fastq files they need to be removed. Replicates can appear do to a biological sifnificance, but they are more often a result of a pcr bias. In this case it is better to be safe and just remove all duplicate reads.
+Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present in the fastq files they need to be removed. Replicates can appear do to a biological significance, but they are more often a result of a pcr bias. In this case it is better to be safe and just remove all duplicate reads.
 
 Understanding Your Read Data
 ------------------------------
@@ -41,7 +41,7 @@ FastQC creates a summary of your reads BASED ON A SUBSET of your raw data. It pr
 
 FastQC levels should be taken with a grain of salt!!!!
 
-Not all sequencing data is created equal. They serve different purposes. For example in DNA-seq you do not expect read replicates in the data. However in RNA-seq the replicates ARE your data. Therefore the tests are not an end all be all. In the next sectionas we will use and actual metagenomics xperiment fastqc report to explain each test and how a raw data set compares to a QCed set.
+Not all sequencing data is created equal. They serve different purposes. For example in DNA-seq you do not expect read replicates in the data. However in RNA-seq the replicates ARE your data. Therefore the tests are not an end all be all. In the next sectionas we will use and actual metagenomics experiment fastqc report to explain each test and how a raw data set compares to a QCed set.
 
 FastQC Test Information
 -----------------------------
