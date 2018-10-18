@@ -42,7 +42,7 @@ Understanding Your Read Data
 Now that we have a basic understanding of the steps of QC you might be asking yourself "Okay, but how do I know my reads need to be QCed or
 if the QC succeeded?". The easiest way is by using a software called fastqc which provides a visual inspection for your data.
 
-FastQC creates a summary of your reads BASED ON A SUBSET of your raw data. It proved 3 levels of quality for each of its summaries:
+FastQC creates a summary of your reads BASED ON A SUBSET of your raw data. It provides 3 levels of quality for each of its summaries:
     - passed : your reads "pass" the quality test
     - warning : there might be something wrong with your reads based on the test
     - fail : your reads failed the test and action must be taken
@@ -56,10 +56,11 @@ experiment fastqc report to explain each test and how a raw data set compares to
 FastQC Test Information
 -----------------------------
 Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the
-visual representations of this as well.
+visual representations of this as well. This will also only include those plots that I feel are relevant, as some of these tests can be taken
+out of context.
 
-Read Quality Plot
-^^^^^^^^^^^^^^^^^
+Read Quality Plots
+^^^^^^^^^^^^^^^^^^^^^
 
 This is simply a boxplot where the y-axis is the quality score and the x is the position along the read.
 
@@ -78,4 +79,40 @@ Here is the same sample after removing poor quality bases:
 .. image:: ./images/Screenshot_5.png
 
 As you can see the vast majority of reads fall in the green along most of the read except for the very end. This is okay and we would be able to move forward.
- 
+
+Another read quality plot is below. It probably won't have a drastic change before and after qc it just gives you an idea of the quality distribution
+across your sample. So below it just shows that a large number of reads have high avg quality. 
+
+.. image:: ./images/Screenshot_7.png
+
+
+Per Sequence GC Content
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is an interesting plot, do to it specifically being different in a metagenomics context. Here the plot shows the distribution of GC content 
+across reads in the sample. If you were sequencing from one species you would expect a normal distribution, but because of the nature of
+metagenomic data, this will most likely not be the case. Different species have different GC content so seeing a non normal distribution is okay.
+This again demonstrates why these should be taken with a grain of salt and within the context of what kind of data you have.
+
+.. image:: ./images/Screenshot_8.png
+
+Just a note, this image is pretty similar to normal but you can see more extreme deviations from a normal distribution. It will also not really
+change after qc.
+
+Per Base N Content
+^^^^^^^^^^^^^^^^^^^^
+
+This is a good plot to look at to asses the quality of your reads as well. An N is given to a read if the base could not be determined during
+sequencing. You will most likely not see N's. However, it is not uncommon to see N's at the beginning and ends of reads. Trimming will most
+likely clean these up for you. If you see a peak above 1% in the middle of the reads, this shows that there was a higher level problem either
+at the sequencing stage or before.
+
+You will most likely see no peaks so I will share an image of a plot that would be concerning.
+
+.. image:: ./images/Screenshot_9.png
+
+notice the small peak at the very end of the read. This would most likely be okay. However, the large peak more towards the middle COULD 
+illustrate a problem in sequencing.
+
+
+
