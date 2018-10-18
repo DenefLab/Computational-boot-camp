@@ -35,7 +35,7 @@ Assuming you are doing shotgun sequencing, no read should have an replicates (ex
 in the fastq files they need to be removed. Replicates can come from pcr steps in which the replicates appeared during library preporation or they
 can be optical duplicates which appear during the actual sequencing. If not removed, they can cause issues later in your assembly. 
 
-.. image:: ./images/Screenshot_6
+.. image:: ./images/Screenshot_6.png
 
 Understanding Your Read Data
 ------------------------------
