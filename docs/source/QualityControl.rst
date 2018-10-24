@@ -137,9 +137,7 @@ adapter name if it was found.
 Our QC Workflow Commands and software
 -------------------------------------
 First: Find check raw read files to determine the adapters used. This allows us to not have to worry about specific adapters not appearing
-in predefined lists in software. This requires the bbtools suite
-
-bbmerge:
+in predefined lists in software. This requires the bbtools suite:
 ::
 
    #check 1m reads in both r1 and r2 to determine r1 and r2 adapters and save to file adapters.fa
