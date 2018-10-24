@@ -137,21 +137,21 @@ adapter name if it was found.
 Our QC Workflow Commands and software
 -------------------------------------
 
-## Optional First: Run fastqc on each fastq:
+Optional First: Run fastqc on each fastq:
 ::
   
   fastqc sample.fastq -o ./
 
 This is not necessary but it would give you an idea of the data before you qc it.
 
-## First: Find check raw read files to determine the adapters used. This allows us to not have to worry about specific adapters not appearing
+First: Find check raw read files to determine the adapters used. This allows us to not have to worry about specific adapters not appearing
 in predefined lists in software. This requires the bbtools suite:
 ::
 
    #check 1m reads in both r1 and r2 to determine r1 and r2 adapters and save to file adapters.fa
    bbmerge.sh in1=$(echo *R1.fastq) in2=$(echo *R2.fastq) outa=adapters.fa reads=1m
 
-## Second: adapter Trimming with scythe:
+Second: adapter Trimming with scythe:
 ::
   
    scythe -a adapters.fa -q sanger -m sample.fastq -o scythe_sample.fastq
@@ -160,7 +160,7 @@ For adapter trimming you simply need the fasta file of the adapter and the fastq
 one of your fastq files. I recommended the output have an identifier to tell yourself that you trimmed adapters from the file. This output
 file will then be used in the next step.
 
-## Third: base trimming with sickle:
+Third: base trimming with sickle:
 ::
    
    sickle se -t sanger -f scythe_sample.fastq -o sickle_scythe_sample.fastq
@@ -168,14 +168,14 @@ file will then be used in the next step.
 As before you would run this command on each fastq for each sample you have. Again, add an identifier to let you know this file has been
 trimmed for quality.
 
-## Fourth: dereplicate with dereplicate.plot:
+Fourth: dereplicate with dereplicate.plot:
 ::
 
   perl dereplicate.pl -fq $FWD -o dedupe_sickle_scythe_sample.fastq
 
 Again, this is run on each fastq
 
-## Fifth: Interleve fastq files and turn them to fasta:
+Fifth: Interleve fastq files and turn them to fasta:
 ::
 
   perl interleave.pl -fastq -outfmt fasta -rev dedupe_sickle_scythe_sample_r1.fastq -fwd dedupe_sickle_scythe_sample_r2.fastq -o sample_int.fasta
@@ -183,4 +183,4 @@ Again, this is run on each fastq
 I recommend interleving becouse it serves two purposes. It matches r1 and r2 reads because you can only assemble with reads that have their mate. It also
 will make your commands shorter and let you keep a smaller number of files for mapping in later steps.
 
-## Lastly: run fastqc like above but on the dedupe_sickle_scythe_sample.fastq this will let you know if your qc was successful and if you should move on
+Lastly: run fastqc like above but on the dedupe_sickle_scythe_sample.fastq this will let you know if your qc was successful and if you should move on
