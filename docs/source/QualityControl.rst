@@ -171,7 +171,7 @@ trimmed for quality.
 Fourth: dereplicate with dereplicate.plot:
 ::
 
-  perl dereplicate.pl -fq $FWD -o dedupe_sickle_scythe_sample.fastq
+  perl dereplicate.pl -fq sickle_scythe_sample.fastq -o dedupe_sickle_scythe_sample.fastq
 
 Again, this is run on each fastq
 
