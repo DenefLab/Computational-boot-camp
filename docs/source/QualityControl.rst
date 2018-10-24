@@ -140,5 +140,6 @@ First: Find check raw read files to determine the adapters used. This allows us 
 in predefined lists in software. This requires the bbtools suite
 
 .. code-block:: bash
+   :linenos:
    #check 1m reads in both r1 and r2 to determine r1 and r2 adapters and save to file adapters.fa
    bbmerge.sh in1=$(echo *R1.fastq) in2=$(echo *R2.fastq) outa=adapters.fa reads=1m
