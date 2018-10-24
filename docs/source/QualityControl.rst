@@ -33,7 +33,8 @@ Removing Replicate Reads
 -------------------------
 Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present
 in the fastq files they need to be removed. Replicates can come from pcr steps in which the replicates appeared during library preparation or they
-can be optical duplicates which appear during the actual sequencing. If not removed, they can cause issues later in your assembly.
+can be optical duplicates which appear during the actual sequencing. If not removed, they can potentially cause issues later in your assembly, and 
+later in analysis when using mapping based approaches for determining things like relative abundance.
 
 .. image:: ./images/Screenshot_6.png
 
@@ -56,8 +57,7 @@ experiment fastqc report to explain each test and how a raw data set compares to
 FastQC Test Information
 -----------------------------
 Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the
-visual representations of this as well. This will also only include those plots that I feel are relevant, as some of these tests can be taken
-out of context.
+visual representations of this as well. This does not include all fastQC tests, only those that are important or interesting.
 
 Read Quality Plots
 ^^^^^^^^^^^^^^^^^^^^^
@@ -114,5 +114,31 @@ You will most likely see no peaks so I will share an image of a plot that would 
 notice the small peak at the very end of the read. This would most likely be okay. However, the large peak more towards the middle COULD 
 illustrate a problem in sequencing.
 
+Sequence Duplication levels
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This plot allows you to visualize the duplicate reads in your samples. As stated before they can come from many sources but ultimately 
+should be removed. You will probably see some duplication at very low values on the x axis. And you may not see a huge change in the
+before and after graphs. This is dependent on the method of deduplication though and the definition of a replicate. Some software will 
+only remove replicates that are identical on both read one and read two. If you see replication at higher levels on the x-axis make sure 
+that those reads are being removed as their duplication level is extremely high (unless this is transcriptomics data)
+
+.. image:: ./images/Screenshot_10.png
 
 
+Overrepresented Sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This may be the most important section as it will identify adapter contamination. If you use a trimming software that has a built in list
+of adapter sequences there is a chance that the adapters may not be removed. If they are in your data before and after qc they will appear 
+here. You cannot move forward until ALL adapters are removed or you will have to start from the beginning and all work you did with the 
+contaminated data will be useless. There is not graph here but if there are sequences they will appear in a table and it will tell you an 
+adapter name if it was found.
+
+
+Our QC Workflow Commands and software
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+First: Find check raw read files to determine the adapters used. This allows us to not have to worry about specific adapters not appearing
+in predefined lists in software. This requires the bbtools suite
+
+.. code-block:: bash
+    #check 1m reads in both r1 and r2 to determine r1 and r2 adapters and save to file adapters.fa
+    bbmerge.sh in1=$(echo *R1.fastq) in2=$(echo *R2.fastq) outa=adapters.fa reads=1m
