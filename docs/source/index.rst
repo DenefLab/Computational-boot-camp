@@ -11,6 +11,7 @@ Welcome to Computational Boot Camp's documentation!
    :caption: Contents:
    
    QualityControl
+   Assembly
 
 
 Indices and tables
