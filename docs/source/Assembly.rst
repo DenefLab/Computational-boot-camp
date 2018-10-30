@@ -134,7 +134,7 @@ Running the software
 We use megahit for assembly with the preset range of kmers for sensitive assembly.
 
 For megahit you need your qced fastq files and can run it like this for a single samples where are r1 and r2 are the read1 and read2 
-files. -t is the number of cores and -o is the output fdirectory.
+files. -t is the number of cores and -o is the output directory.
 
 ::
 
@@ -144,9 +144,13 @@ The command for a co-assembly is the same except r1.fastq and r2.fastq can be re
 version of that might look something like this:
 
 ::
+
+
     # make comma separated lists of fastqs
+
     r1=`ls ../reads/*R1* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
     r2=`ls ../reads/*R2* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
 
     # run megahit co-assembly
     megahit -1 $r1 -2 $r2 -t 40 --presets meta-sensitive -o Megahit_meta-sensitive_out/
+
