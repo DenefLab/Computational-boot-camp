@@ -89,7 +89,7 @@ read match to an area of the genome it does not belong in, or an actual sequence
 
 .. image:: ./images/Screenshot_17.png
 
-D. Correcting Ambiguous Paths (X-cuts)
+D. Correcting Ambiguous Paths (branches)
 #######################################
 some places appear where contigs may share a short section of sequence but aside from that they are independent of each other.
 Imagine an X where the intersection is the overlapping sequence. These are split into two independent contigs and each of them 
@@ -113,3 +113,40 @@ can be seen below:
 
 Assembly Considerations
 ---------------------------
+
+1. Co-assembly
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Benefits of co-assembly:
+    - higher read depth
+    - allows comparisons across samples with one reference assembly
+    - can make binning with differential coverage more powerful
+    - can bridge contigs to result in a better assembly
+    - create more consistent contigs
+
+while above are some benefits it is important to note that metagenomic samples can be very fickle and while these benefits may work
+in some samples, they could not in others.
+
+2. Digital normalization?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Running the software
+---------------------
+We use megahit for assembly with the preset range of kmers for sensitive assembly.
+
+For megahit you need your qced fastq files and can run it like this for a single samples where are r1 and r2 are the read1 and read2 
+files. -t is the number of cores and -o is the output fdirectory.
+
+::
+
+    megahit -1 r1.fastq -2 r2.fastq -t 40 --presets meta-sensitive -o Megahit_meta-sensitive_out/
+
+The command for a co-assembly is the same except r1.fastq and r2.fastq can be replaces with a list of r1s and a list of r2. An automated 
+version of that might look something like this:
+
+::
+    # make comma separated lists of fastqs
+    r1=`ls ../reads/*R1* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
+    r2=`ls ../reads/*R2* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
+
+    # run megahit co-assembly
+    megahit -1 $r1 -2 $r2 -t 40 --presets meta-sensitive -o Megahit_meta-sensitive_out/
