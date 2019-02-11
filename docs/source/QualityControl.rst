@@ -13,9 +13,9 @@ raw reads -> finding adapters -> adapter trimming -> poor base trimming -> derep
 
 Trimming Adapters
 -----------------
-Adapters are synthetic sequences added to the beginning and ends of reads for sequencing. Because tehse sequences are not part of your experimental
+Adapters are synthetic sequences added to the beginning and ends of reads for sequencing. Because these sequences are not part of your experimental
 sample it is imperative that they are removed. If they are not completely removed they can contaminate you assemblies and appear downstream in contigs
-making results from you analysis not make sense and also useless.
+making results from you analysis not make sense and also useless. Sequencers are capable of recognizing adapters at the front of sequences and they are usually removed automatically. So this step usually focuses on the ends(right) sides of reads.
 
 Removing Poor Quality Bases
 ------------------------------
