@@ -152,7 +152,7 @@ a directory for each sample and the r1 and r2 for each. There is no need to unzi
 
 I then make the fastq.csv file and populate it fully with the naming schemes mentioned above.
 
-.. image:: images/Screen Shot 2021-02-02 at 10.40.51 PM.png
+.. image:: ./images/Screen Shot 2021-02-02 at 10.40.51 PM.png
 
 I then take a copy of the config.yaml file from above and put QC as the mode then to run the pipeline I execute the following
 
@@ -163,7 +163,7 @@ This will take care of software dependencies and run qc on each row in your fast
 
 Once QC is done simply change the mode in the config to assembly to assemble and create your assembly scheme file. Mine is below:
 
-.. image:: ../images/Screen Shot 2021-02-02 at 10.43.59 PM.png
+.. image:: ./images/Screen Shot 2021-02-02 at 10.43.59 PM.png
 
 The above scheme makes single sample assemblies.
 
@@ -171,17 +171,17 @@ Again run the same snakemake command as above.
 
 Once assembly is done you will need to create the assembly_info.csv file from the assembly output. Mine is below.
 
-.. image:: ../images/Screen Shot 2021-02-02 at 10.41.52 PM.png
+.. image:: ./images/Screen Shot 2021-02-02 at 10.41.52 PM.png
 
 Now it is time to map to the assembly. First change the mode to Mapping. Then create the mapping_scheme file like mine below:
 
-.. image:: ../images/Screen Shot 2021-02-02 at 10.43.04 PM.png
+.. image:: ./images/Screen Shot 2021-02-02 at 10.43.04 PM.png
 
 The above scheme does an all vs all mapping for this data.
 
 run the snakemake command like above and wait for it to finish. Once done create your mapping_info.csv file like mine below.
 
-.. image:: ../images/Screen Shot 2021-02-02 at 10.42.34 PM.png
+.. image:: ./images/Screen Shot 2021-02-02 at 10.42.34 PM.png
 
 When mapping is done, all that is left to do is bin. You can now make the binning_scheme file. In my case it is an exact copy of 
 my mapping_scheme file above. 
