@@ -30,6 +30,7 @@ The config file is the main file for control. Here you tell the pipeline what mo
 The default main config file looks like:
 
 .. code-block:: yaml
+
     ######################################
     # Available workflows, 
     # QC, Mapping, Assembly, Binning
