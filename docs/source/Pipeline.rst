@@ -29,40 +29,40 @@ The config file is the main file for control. Here you tell the pipeline what mo
 
 The default main config file looks like:
 .. code-block:: yaml
-######################################
-# Available workflows, 
-# QC, Mapping, Assembly, Binning
-# Change mode: to the above value you
-# want to run
-######################################
-mode:
+    ######################################
+    # Available workflows, 
+    # QC, Mapping, Assembly, Binning
+    # Change mode: to the above value you
+    # want to run
+    ######################################
+    mode:
 
-##########################################
-# Basic options, These will be run before
-# any of the above workflows. Change to True
-# to run these steps
-##########################################
-working_dir: "./"
-container: "docker://continuumio/miniconda3:4.4.10"
+    ##########################################
+    # Basic options, These will be run before
+    # any of the above workflows. Change to True
+    # to run these steps
+    ##########################################
+    working_dir: "./"
+    container: "docker://continuumio/miniconda3:4.4.10"
 
-##########################################
-# Workflow Params, Each Workflow has Options
-# that can be initiated here. Defaults are 
-# filled in below
-##########################################
-QC_Params:
-  csv_info: ".test/fastqs.csv"
+    ##########################################
+    # Workflow Params, Each Workflow has Options
+    # that can be initiated here. Defaults are 
+    # filled in below
+    ##########################################
+    QC_Params:
+    csv_info: ".test/fastqs.csv"
 
-Assembly_params:
-  csv_info: ".test/assems.csv"
-  scheme: "assembly_scheme.yaml"
+    Assembly_params:
+    csv_info: ".test/assems.csv"
+    scheme: "assembly_scheme.yaml"
 
-Mapping_params:
-  csv_info: ".test/mappings.csv"
-  scheme: "mapping_scheme.yaml"
+    Mapping_params:
+    csv_info: ".test/mappings.csv"
+    scheme: "mapping_scheme.yaml"
 
-Binning_params:
-  scheme: "binning_scheme.yaml"
+    Binning_params:
+    scheme: "binning_scheme.yaml"
 
 
 The CSV Files
