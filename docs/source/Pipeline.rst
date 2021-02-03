@@ -28,6 +28,7 @@ The Main Config File
 The config file is the main file for control. Here you tell the pipeline what mode you want to run in, information for your slurm account, where the inportant csv files are, how you want things run, etc. 
 
 The default main config file looks like:
+
 .. code-block:: yaml
     ######################################
     # Available workflows, 
