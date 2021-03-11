@@ -20,7 +20,66 @@ Currently, this pipeline covers:
  - checkm (BROKEN)
  
 The pipeline is a large Snakemake workflow that calls on different sets of rules for each of the above steps based on teh requested output files. It aims to be modular so that any step can be run without performing the step that comes before it (ie. run mapping on something that was not QCed with this pipeline). To acomplish this the pipeline is controlled by config files and a few csv files that keep track of important information like Sample names and their corresponding files. The pipeline will also submit a single slurm job for each rule run without the need to write your own slurm scripts.
- 
+
+Before You Can Run
+==================
+Conda Env
+-------------
+I have created a conda env in our shared storage directory. This env contains snakemake and singularity (so you dont have to module load singularity) it can be found here:
+.. code-block::
+    /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/snakemake/
+
+you can simply run conda activate with the above path to start this environment. Every other part of the workflow is controlled through containers.
+
+Setting up a Snakemake Profile
+------------------------------
+Before the workflow can submit slurm jobs you must create a snakemake profile. This is kept in your home directory and is yours only. This is because we submit jobs through separate accounts and you can use this same profile for other snakemake workflows.
+
+To create one run the following:
+.. code-block:: bash
+    mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
+    pip install cookiecutter # a template tool
+    # you can just press enter for each cookie cutter prompt and it will create
+    # a directory called slurm with some scripts inside of it in the directory we previously made
+
+Once you have the files for your profile, we just need to make some quick edits first you should have a file called slurm-submit.py. Open it and on line 13 there is a variable called CLUSTER_CONFIG. In the quotes paste the path to your cluster config file that we made above. If you used the above commands, if should look
+like this. Instead of my username it will be yours.
+.. code-block:: python
+    CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
+Once this is done, you can close and save the file.
+
+Next, you want to open the config.yaml file and make it look like this:
+.. code-block:: yaml
+    restart-times: 3
+    jobscript: "slurm-jobscript.sh"
+    cluster: "slurm-submit.py"
+    #cluster-status: "slurm-status.py"
+    max-jobs-per-second: 1
+    max-status-checks-per-second: 10
+    local-cores: 1
+    latency-wait: 60
+    jobs: 10
+    keep-going: True
+    rerun-incomplete: True
+    printshellcmds: True
+    use-singularity: True
+
+and make the cluster_config.yml file look like this:
+.. code-bloack:: yaml
+    #NOTE: time must be in minutes
+__default__:
+    account: vdenef1
+    partition: standard
+    mail-user: jtevans@umich.edu
+    time: 4320
+    nodes: 1
+    ntasks: 1
+    mem: 8GB
+    mail-type: FAIL
+    export: ALL
+
+You will need to change the email and account lines to correspond to you and the account you use. This is the default parameters of all jobs submitted, but things like megahit and bwa are adjusted for in the actual workflow to request more resources since they will use them.
+
 The Files
 =========
 The Main Config File
