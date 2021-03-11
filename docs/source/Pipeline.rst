@@ -87,15 +87,16 @@ and make the cluster_config.yml file look like this:
 .. code-bloack:: yaml
 
   #NOTE: time must be in minutes
-    account: vdenef1
-    partition: standard
-    mail-user: jtevans@umich.edu
-    time: 4320
-    nodes: 1
-    ntasks: 1
-    mem: 8GB
-    mail-type: FAIL
-    export: ALL
+      __default__:
+       account: vdenef1
+       partition: standard
+       mail-user: jtevans@umich.edu
+       time: 4320
+       nodes: 1
+       ntasks: 1
+       mem: 8GB
+       mail-type: FAIL
+       export: ALL
 
 You will need to change the email and account lines to correspond to you and the account you use. This is the default parameters of all jobs submitted, but things like megahit and bwa are adjusted for in the actual workflow to request more resources since they will use them.
 
