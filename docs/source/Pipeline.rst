@@ -121,39 +121,51 @@ The default main config file looks like:
 .. code-block:: yaml 
 
     ######################################
-    # Available workflows, 
+    # Available workflows,
     # QC, Mapping, Assembly, Binning
     # Change mode: to the above value you
     # want to run
     ######################################
-    mode:
-
+    mode: "Assembly"
+    
     ##########################################
     # Basic options, These will be run before
     # any of the above workflows. Change to True
     # to run these steps
     ##########################################
     working_dir: "./"
-    container: "docker://continuumio/miniconda3:4.4.10"
+    
+    ##########################################
+    # Absolute paths to singularity containers
+    # Labeled for each software used by the
+    # workflow
+    ##########################################
+    singularity:
+     bbtools: "/nfs/turbo/lsa-dudelabs/containers/bbtools/bbtools.sif"
+     bwa: "/nfs/turbo/lsa-dudelabs/containers/bwa/bwa.sif" #includes samtools in container
+     checkm: "/nfs/turbo/lsa-dudelabs/containers/checkm/checkm.sif"
+     concoct: "/nfs/turbo/lsa-dudelabs/containers/concoct/concoct_v1.1.0.sif"
+     fastqc: "/nfs/turbo/lsa-dudelabs/containers/fastqc/fastqc.sif"
+     megahit: "/nfs/turbo/lsa-dudelabs/containers/Megahit/megahit.sif"
 
     ##########################################
     # Workflow Params, Each Workflow has Options
-    # that can be initiated here. Defaults are 
+    # that can be initiated here. Defaults are
     # filled in below
     ##########################################
     QC_Params:
-    csv_info: ".test/fastqs.csv"
+     csv_info: "fastq_info.csv"
 
-    Assembly_params:
-    csv_info: ".test/assems.csv"
-    scheme: "assembly_scheme.yaml"
+    Assembly_Params:
+     csv_info: "assembly_info.csv"
+     scheme: "assembly_scheme.yaml"
 
-    Mapping_params:
-    csv_info: ".test/mappings.csv"
-    scheme: "mapping_scheme.yaml"
+    Mapping_Params:
+     csv_info: "mapping_info.csv"
+     scheme: "mapping_scheme.yaml"
 
-    Binning_params:
-    scheme: "binning_scheme.yaml"
+    Binning_Params:
+     scheme: "binning_scheme.yaml"
 
 This is the bare minimum required inputs to run this pipeline in full. Will add more details about advanced options as they are tested.
 
