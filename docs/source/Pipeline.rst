@@ -30,7 +30,10 @@ I have created a conda env in our shared storage directory. This env contains sn
 
 
 .. code-block:: bash
+
     /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/snakemake/
+    
+
 
 you can simply run conda activate with the above path to start this environment. Every other part of the workflow is controlled through containers.
 
@@ -38,25 +41,32 @@ Setting up a Snakemake Profile
 ------------------------------
 Before the workflow can submit slurm jobs you must create a snakemake profile. This is kept in your home directory and is yours only. This is because we submit jobs through separate accounts and you can use this same profile for other snakemake workflows.
 
-To create one run the following:  
+To create one run the following in an interactive job since login nodes do not have internet access:  
 
 
 
 .. code-block:: bash
 
     mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
-    pip install cookiecutter # a template tool
+    pip install cookiecutter # a template tool. You dont have to pip install if you use my snakemake environment
+    cookiecutter https://github.com/Snakemake-Profiles/slurm.git
+    touch ~/.config/snakemake/default/config.yaml
     # you can just press enter for each cookie cutter prompt and it will create
     # a directory called slurm with some scripts inside of it in the directory we previously made
+    
+
 
 Once you have the files for your profile, we just need to make some quick edits first you should have a file called slurm-submit.py. Open it and on line 13 there is a variable called CLUSTER_CONFIG. In the quotes paste the path to your cluster config file that we made above. If you used the above commands, if should look
-like this. Instead of my username it will be yours.   
+like this. Instead of my username it will be yours. If the other variable do not match what is below change them to be the same.
 
 
 
 .. code-block:: python    
 
-    CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
+   # cookiecutter arguments
+   SBATCH_DEFAULTS = ""
+   CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
+   ADVANCED_ARGUMENT_CONVERSION = {"yes": True, "no": False}["no"]
     
 Once this is done, you can close and save the file.
 
