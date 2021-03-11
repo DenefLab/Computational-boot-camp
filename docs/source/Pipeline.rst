@@ -84,7 +84,7 @@ and make the cluster_config.yml file look like this:
 
 
 
-.. code-bloack:: yaml
+.. code-block:: yaml
 
   #NOTE: time must be in minutes
       __default__:
@@ -207,7 +207,10 @@ For the mapping file the first entry is the reference you are mapping to that mu
 are all of the samples you want to map to it that must again match to the fastq.csv file. For binning the first entry is the assembly you want to bin and the entries under it are the
 mappings you want to include (this may be exactly the same as the mapping scheme assuming you map all vs all for binning).
 
+
+
 .. code-block:: yaml 
+
     sample_77:
     - sample_77
     - sample_78
@@ -236,7 +239,9 @@ I then make the fastq.csv file and populate it fully with the naming schemes men
 
 I then take a copy of the config.yaml file from above and put QC as the mode then to run the pipeline I execute the following
 
+
 .. code-block:: bash
+
     snakemake -s Metagenomics-Workflow/Snakefile --cores 36 --use-conda
 
 This will take care of software dependencies and run qc on each row in your fastqc.csv
