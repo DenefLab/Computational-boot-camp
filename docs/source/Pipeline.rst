@@ -43,6 +43,7 @@ To create one run the following:
 
 
 .. code-block:: bash
+
     mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
     pip install cookiecutter # a template tool
     # you can just press enter for each cookie cutter prompt and it will create
@@ -54,7 +55,9 @@ like this. Instead of my username it will be yours.
 
 
 .. code-block:: python    
+
     CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
+    
 Once this is done, you can close and save the file.
 
 Next, you want to open the config.yaml file and make it look like this:    
@@ -62,6 +65,7 @@ Next, you want to open the config.yaml file and make it look like this:
 
 
 .. code-block:: yaml
+
     restart-times: 3
     jobscript: "slurm-jobscript.sh"
     cluster: "slurm-submit.py"
@@ -81,6 +85,7 @@ and make the cluster_config.yml file look like this:
 
 
 .. code-bloack:: yaml
+
   #NOTE: time must be in minutes
 __default__:
     account: vdenef1
