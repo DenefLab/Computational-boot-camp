@@ -87,7 +87,6 @@ and make the cluster_config.yml file look like this:
 .. code-bloack:: yaml
 
   #NOTE: time must be in minutes
-__default__:
     account: vdenef1
     partition: standard
     mail-user: jtevans@umich.edu
