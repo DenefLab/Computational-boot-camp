@@ -26,8 +26,10 @@ Before You Can Run
 Conda Env
 -------------
 I have created a conda env in our shared storage directory. This env contains snakemake and singularity (so you dont have to module load singularity) it can be found here:
-|.. code-block:: bash
 
+
+
+.. code-block:: bash
     /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/snakemake/
 
 you can simply run conda activate with the above path to start this environment. Every other part of the workflow is controlled through containers.
@@ -36,23 +38,30 @@ Setting up a Snakemake Profile
 ------------------------------
 Before the workflow can submit slurm jobs you must create a snakemake profile. This is kept in your home directory and is yours only. This is because we submit jobs through separate accounts and you can use this same profile for other snakemake workflows.
 
-To create one run the following:    
-|.. code-block:: bash
+To create one run the following:  
 
+
+
+.. code-block:: bash
     mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
     pip install cookiecutter # a template tool
     # you can just press enter for each cookie cutter prompt and it will create
     # a directory called slurm with some scripts inside of it in the directory we previously made
 
 Once you have the files for your profile, we just need to make some quick edits first you should have a file called slurm-submit.py. Open it and on line 13 there is a variable called CLUSTER_CONFIG. In the quotes paste the path to your cluster config file that we made above. If you used the above commands, if should look
-like this. Instead of my username it will be yours.    
+like this. Instead of my username it will be yours.   
+
+
+
 .. code-block:: python    
     CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
 Once this is done, you can close and save the file.
 
 Next, you want to open the config.yaml file and make it look like this:    
-|.. code-block:: yaml
 
+
+
+.. code-block:: yaml
     restart-times: 3
     jobscript: "slurm-jobscript.sh"
     cluster: "slurm-submit.py"
@@ -67,9 +76,11 @@ Next, you want to open the config.yaml file and make it look like this:
     printshellcmds: True
     use-singularity: True
 
-and make the cluster_config.yml file look like this:    
-|.. code-bloack:: yaml
+and make the cluster_config.yml file look like this: 
 
+
+
+.. code-bloack:: yaml
   #NOTE: time must be in minutes
 __default__:
     account: vdenef1
@@ -92,7 +103,7 @@ The config file is the main file for control. Here you tell the pipeline what mo
 
 The default main config file looks like:    
 
-|.. code-block:: yaml 
+.. code-block:: yaml 
 
     ######################################
     # Available workflows, 
