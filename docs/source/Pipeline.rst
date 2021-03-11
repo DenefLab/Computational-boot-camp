@@ -35,7 +35,7 @@ Setting up a Snakemake Profile
 ------------------------------
 Before the workflow can submit slurm jobs you must create a snakemake profile. This is kept in your home directory and is yours only. This is because we submit jobs through separate accounts and you can use this same profile for other snakemake workflows.
 
-To create one run the following:
+To create one run the following:    
 .. code-block:: bash
     mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
     pip install cookiecutter # a template tool
@@ -43,12 +43,12 @@ To create one run the following:
     # a directory called slurm with some scripts inside of it in the directory we previously made
 
 Once you have the files for your profile, we just need to make some quick edits first you should have a file called slurm-submit.py. Open it and on line 13 there is a variable called CLUSTER_CONFIG. In the quotes paste the path to your cluster config file that we made above. If you used the above commands, if should look
-like this. Instead of my username it will be yours.
-.. code-block:: python
+like this. Instead of my username it will be yours.    
+.. code-block:: python    
     CLUSTER_CONFIG = "/home/jtevans/.config/snakemake/slurm/cluster_config.yml"
 Once this is done, you can close and save the file.
 
-Next, you want to open the config.yaml file and make it look like this:
+Next, you want to open the config.yaml file and make it look like this:    
 .. code-block:: yaml
     restart-times: 3
     jobscript: "slurm-jobscript.sh"
@@ -64,7 +64,7 @@ Next, you want to open the config.yaml file and make it look like this:
     printshellcmds: True
     use-singularity: True
 
-and make the cluster_config.yml file look like this:
+and make the cluster_config.yml file look like this:    
 .. code-bloack:: yaml
     #NOTE: time must be in minutes
 __default__:
@@ -86,7 +86,7 @@ The Main Config File
 ----------------
 The config file is the main file for control. Here you tell the pipeline what mode you want to run in, information for your slurm account, where the inportant csv files are, how you want things run, etc. 
 
-The default main config file looks like: 
+The default main config file looks like:    
 
 .. code-block:: yaml 
     ######################################
