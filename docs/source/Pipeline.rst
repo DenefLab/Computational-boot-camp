@@ -25,7 +25,7 @@ Before You Can Run
 ==================
 Conda Env
 -------------
-I have created a conda env in our shared storage directory. This env contains snakemake and singularity (so you dont have to module load singularity) it can be found here:
+I have created a conda env in our shared storage directory. This env contains snakemake it can be found here:
 
 
 
@@ -35,7 +35,7 @@ I have created a conda env in our shared storage directory. This env contains sn
     
 
 
-you can simply run conda activate with the above path to start this environment. Every other part of the workflow is controlled through containers.
+you can simply run conda activate with the above path to start this environment and also module load singualarity. Every other part of the workflow is controlled through containers.
 
 Setting up a Snakemake Profile
 ------------------------------
