@@ -47,7 +47,7 @@ To create one run the following in an interactive job since login nodes do not h
 
 .. code-block:: bash
 
-    mkdir -p ~/.config/snakemake/default # make a directory to hold your profiles
+    mkdir -p ~/.config/snakemake # make a directory to hold your profiles
     pip install cookiecutter # a template tool. You dont have to pip install if you use my snakemake environment
     cookiecutter https://github.com/Snakemake-Profiles/slurm.git
     touch ~/.config/snakemake/default/config.yaml
