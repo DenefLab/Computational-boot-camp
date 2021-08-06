@@ -7,18 +7,18 @@ Basic Pipeline Structure
 Currently, this pipeline covers:
 
 - Quality control
- - adapter trimming
- - quality trimming
+    - adapter trimming
+    - quality trimming
 - Assembly with MEGAHIT
- - single sample assemblies
- - co-assemblies
+    - single sample assemblies
+    - co-assemblies
 - Mapping with bwa
- - can map multiple samples to one reference
- - generates sorted bams
+    - can map multiple samples to one reference
+    - generates sorted bams
 - Binning with concoct
- - runs the multithreaded version of concoct
- - checkm
- - anvio
+    - runs the multithreaded version of concoct
+    - checkm
+- Anvio
  
 This pipeline is simply a script that leverages the slurm job scheduler. It creates a series of jobs that depend on the successful run of prereq jobs and submits them all to slurm. Slurm then handles the run order and logging of errors. This pipelines does not need to be kept running and creates a separate job for each step with a detailed log file name to identify log for each step run. 
 
@@ -131,6 +131,7 @@ The current workflows and their steps are as follows:
     - run megahit meta-sensitive
     - run binstats.sh from bbtools
 .. code-block:: bash
+
     mgjss assemble fastq_info.csv assembly_scheme.yml assembly_output --account vdenef1
        
 - map 
@@ -138,6 +139,7 @@ The current workflows and their steps are as follows:
     - run samtools sort
     - run samtools index
 .. code-block:: bash
+
     mgjss map fastq_info.csv assembly_info.csv mapping_scheme.yml mapping_output --account vdenef1
     
 - concoct
@@ -148,6 +150,7 @@ The current workflows and their steps are as follows:
     - extract bins into fasta files
     - run checkm on extracted bins
 .. code-block:: bash
+
     mgjss concoct assembly_info.csv mapping_info.csv binning_scheme.yaml binning_output --account vdenef1
     
 - anvio
@@ -162,4 +165,5 @@ The current workflows and their steps are as follows:
         - use the new contig names to update binlist contig names
         - run the above steps
 .. code-block:: bash
+
     mgjss assemble assembly_info.csv bam_info.csv binning_info.csv anvio_scheme.yaml anvio_output --rename_contigs --account vdenef1
