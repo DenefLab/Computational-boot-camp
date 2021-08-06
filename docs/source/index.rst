@@ -13,6 +13,7 @@ Welcome to Computational Boot Camp's documentation!
    QualityControl
    Assembly
    Pipeline
+   SharedResources
 
 
 Indices and tables
