@@ -22,6 +22,8 @@ Currently, this pipeline covers:
  
 This pipeline is simply a script that leverages the slurm job scheduler. It creates a series of jobs that depend on the successful run of prereq jobs and submits them all to slurm. Slurm then handles the run order and logging of errors. This pipelines does not need to be kept running and creates a separate job for each step with a detailed log file name to identify log for each step run. 
 
+This pipeline allows for large projects with multiple assemblies and data sets to be submitted for efficient analysis in a simplistic way. It is modular and you can use and workflow at any time as long as you have the correct input files. This means if you already have QCed data you can start at assembly without running QC from this pipeline specifically and so on.
+
 Before You Can Run
 ==================
 Conda Env
