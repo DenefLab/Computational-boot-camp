@@ -55,3 +55,55 @@ The current conda envs available to use are:
 - vcontact2                /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/vcontact2
 - vibrant                  /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/vibrant
 - virsorter                /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/virsorter
+  
+Databases
+=========
+The current databases are split up into 16S, functional, genomes, nt, proteins. It is also the location of data
+stored for software such as checkv and virsorter. 
+
+The current available databases and the directories they are aunder are.
+- 16S
+  - Freshwater
+  - green_genes
+  - silva
+- functional (functional databases have hmm, blast, and diamond versions)
+  - COGs 
+  - eggNOGs
+  - Tigrfam
+  - pfam
+  - kegg
+  - kofam
+- genomes
+  - refseq
+- nt
+- proteins
+  - NR
+- centrifuge_indexes
+  - p+h+v
+- checkv
+- virsorter
+
+Containers
+==========
+Most software is stored in singularity containers. THis includes the container image as well as the definition
+file used to create the container.
+
+See the container section for more information on running these containers on your own.
+
+Available containers:
+
+- bbtools
+- bwa
+- checkm
+- checkv
+- concoct
+- fastqc
+- kofamscan
+- megahit
+- mothur
+- nanopore
+- subreads
+- vcontact2
+- vibrant
+- virfinder
+- virsorter
