@@ -127,6 +127,7 @@ Running The Pipeline
 The pipeline consists of separate workflows that are each called indiviually. You will have to wait for the previously run workflow to finish before running the next. For example you cannot run assembly until ALL of the quality control jobs are done running.
 
 The current workflows and their steps are as follows:
+
 - assemble
     - run megahit meta-sensitive
     - run binstats.sh from bbtools
