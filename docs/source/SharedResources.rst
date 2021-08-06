@@ -62,20 +62,20 @@ The current databases are split up into 16S, functional, genomes, nt, proteins. 
 stored for software such as checkv and virsorter. 
 
 The current available databases and the directories they are aunder are.
-- 16S
+- 16S 
   - Freshwater
   - green_genes
   - silva
-- functional (functional databases have hmm, blast, and diamond versions)
+- functional (functional databases have hmm, blast, and diamond versions) 
   - COGs 
   - eggNOGs
   - Tigrfam
   - pfam
   - kegg
   - kofam
-- genomes
+- genomes 
   - refseq
-- nt
+- nt 
 - proteins
   - NR
 - centrifuge_indexes
