@@ -89,7 +89,7 @@ Containers
 Most software is stored in singularity containers. THis includes the container image as well as the definition
 file used to create the container.
 
-See the container section for more information on running these containers on your own.
+See the container section for more information or the singularity documentation (https://sylabs.io/guides/3.5/user-guide/introduction.html) on running these containers on your own.
 
 Available containers:
 
