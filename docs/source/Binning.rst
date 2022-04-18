@@ -23,15 +23,6 @@ across samples. This informationed is combined into a matrix that is dimmensiona
 to estimate the number of genomes in the sample 3-4x higher than what is actually there and programmatically bringing that number
 down in its final output. 
 
-The steps to run CONCOCT
----------------------
-The steps to run concoct are as follows:
-1. Generate the coverage table from all of the bams created from mapping reads to the contigs you are binning
-2. Cut up contigs that are longer than 10kb into 10kb chunks
-3. run clustering
-4. merge cutup contigs in their bins
-5. create fasta files of bins
-
 Deviation from defaults
 ------------------------
 As mentioned above CONCOCT attempts to bring the bin estimation value down from an overestimated value, 400 by default.
