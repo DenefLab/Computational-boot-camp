@@ -12,8 +12,12 @@ Welcome to Computational Boot Camp's documentation!
    
    QualityControl
    Assembly
-   Pipeline
+   Mapping
+   Binning
+   FullMetagenomicsRun
    SharedResources
+   GreatLakesResources
+   Singularity
 
 
 Indices and tables
