@@ -9,11 +9,13 @@ Running software in existing containers
 To run software in an existing container, simply 
 
 .. code-block:: bash
+    
     module load Singularity
 
 Then add singularity exec to the front of the normal command. For Example:
 
 .. code-block:: bash
+
     # normal megahit command 
     megahit -1 $r1 -2 $r2 -t 40 --presets meta-sensitive -o Megahit_meta-sensitive_out/
     # singularity megahit command 
