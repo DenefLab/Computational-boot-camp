@@ -127,6 +127,7 @@ b. To use the pipeline on a set of samples
            - sample-2
     
     2. Create an assembly paths yaml file where the header is an assembly name and under that is the path to the assembly
+      
        .. code-block:: yaml
 
           # map reads from sample_1 and sample_2 to both assembly sample_1 and assembly sample_2
@@ -226,7 +227,7 @@ Once you have a set of bins for each assembly you manually refined. simply add t
 Then do the following:
    
    .. code-block:: bash
-       
+
        #run pyani on all the bins
        #combine checkm tables
        #convert the pyani tables using the convert_table script from https://github.com/jtevns/Pairwise_Dereplication
