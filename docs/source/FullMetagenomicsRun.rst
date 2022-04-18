@@ -16,19 +16,16 @@ It also allows you to move pieces of your analysis to avoid the purge.
 once you make your directory you can move into it
 
 ::
-  
   cd your_project_name
 
 2. Move a copy of your raw reads to your working directory
 ----------------------------------------------------------
 Create a directory in your working directory for your raw reads
 ::
-  
   mkdir raw_reads
 
 Once created you can copy all of your fastq files to the directory
 ::
-  
   cp path/to/fastqs/*.fastq.gz raw_reads
 
 3. Run QC on each set of your reads
@@ -49,7 +46,6 @@ b. To use the pipeline on a set of samples
  1. Create a yaml file with a header for each set of reads and the path to its corresponding r1 and r2 files like below:
    
    .. code-block:: yaml 
-
     sample_1:
      raw_r1: raw_reads/sample_1/*R1*
      raw_r2: raw_reads/sample_1/*R2*
