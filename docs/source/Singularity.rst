@@ -41,7 +41,7 @@ To build a Container with singularity on Greatlakes
 
 Building a singularity container requires a def file. The def file contains the instructions to make this file and the following template will work for any software that can be installed using conda
 
-   ..code-block:: bash
+    .. code-block:: bash
 
         Bootstrap: shub
         From: scleveland/centos7-base-singularity
