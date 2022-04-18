@@ -25,10 +25,10 @@ The transormation steps is as follows:
 
 .. image:: ./images/Screenshot_bwt.png
 
- 1. Take the reference string you want to search against and add a $ to the end of it. This allows us to know what the end of the original string was and rotation to 
+1. Take the reference string you want to search against and add a $ to the end of it. This allows us to know what the end of the original string was and rotation to 
     determine permutations.
- 2. Create a matrix of all possible  rotations of the string and sort them alphabetically
- 3. Take the last column of the matrix. This is your BWT of your reference.
+2. Create a matrix of all possible  rotations of the string and sort them alphabetically
+3. Take the last column of the matrix. This is your BWT of your reference.
 
 Mapping to the BWT/FM index
 ----------------------------
