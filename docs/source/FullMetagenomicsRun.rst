@@ -17,7 +17,7 @@ It also allows you to move pieces of your analysis to avoid the purge.
 once you make your directory you can move into it
 
 .. code-block:: bash
-    
+
   cd your_project_name
 
 2. Move a copy of your raw reads to your working directory
@@ -62,7 +62,8 @@ b. To use the pipeline on a set of samples
 
  2. Once the yaml is made simply run the QC module of the pipeline: 
   
-  ::
+  .. code-block:: bash
+
       mgjss qc fastqs.yml qc_output --account vdenef1
 
  Here you supply the yaml you made above, output directory name and the account you wish to submit jobs under. This will create the directory for qc_output, and a directory for each Sample named with all generated files for that sample inside.
@@ -72,7 +73,8 @@ b. To use the pipeline on a set of samples
 ------------
  a. To assembly one sample
  
- ::
+ .. code-block:: bash
+
      1. Run megahit
      2. Run Assembly stats
 
@@ -81,6 +83,7 @@ b. To use the pipeline on a set of samples
   same run.
      
      .. code-block:: yaml 
+
       #make a single assembly using reads from sample 1
       sample_1:
        - sample_1
@@ -94,6 +97,7 @@ b. To use the pipeline on a set of samples
 
   2. run the assembly module
     .. code-block:: bash
+
         mgjss assemble fastqs.yml assembly_scheme.yml assembly_output --account vdenef1
 
   Similarly to above you provide the path to your fastq files, the assembly scheme, the output directory, and the account to run under. The pipeline will make your output directory, and a directory inside of it for each assembly with their outputs inside.
@@ -104,6 +108,7 @@ b. To use the pipeline on a set of samples
   a. to map a sample to a ref
    
    .. code-block:: bash
+
        1. index ref
        2. map reads and convert output to sorted bam
        3. index sorted bam
@@ -112,6 +117,7 @@ b. To use the pipeline on a set of samples
     1. Create a mapping_scheme.yml file where each header is an assembly name you made in the previous step and a list of all samples you want to map to it.
       
       .. code-block:: yaml
+
           # map reads from sample_1 and sample_2 to both assembly sample_1 and assembly sample_2
           sample_1:
            - sample_1
@@ -122,6 +128,7 @@ b. To use the pipeline on a set of samples
     
     2. Create an assembly paths yaml file where the header is an assembly name and under that is the path to the assembly
        .. code-block:: yaml
+
           # map reads from sample_1 and sample_2 to both assembly sample_1 and assembly sample_2
           sample_1:
            - path/to/assembly/final.contigs.fa
@@ -131,12 +138,14 @@ b. To use the pipeline on a set of samples
     3. Run the mapping module of the pipeline
       
       .. code-block:: bash
+
           mgjss map fastqs.yml assembly_paths.yml mapping_scheme.yml mapping_output --account vdenef1
 
     This will create your mapping output directory with a directory for each assembly. In each assembly directory there will be the sorted bam files and bam indexes produced by the pipeline. It will also create a bam_paths.yml file where each header is an assembly you mapped to followed by a list of
     samples you mapped to the ref with the associated bam file path like below:
 
     .. code-block:: yaml
+
           sample_1:
            sample_1: path/to/bam/
           sample_2:
@@ -147,6 +156,7 @@ b. To use the pipeline on a set of samples
 a. to bin a single sample
    
    .. code-block:: bash
+
        1. cut up fasta
        2. generate coverage profile
        3. run concoct
@@ -157,6 +167,7 @@ a. to bin a single sample
     1. Create a binning_scheme.yml file where each header is an assembly name you made in the previous step and a list of all sample mappings you want to include in the coverage profile.
       
       .. code-block:: yaml
+
           # bin both assembly sample_1 and assembly sample_2 using the bams from mapping sample_1 and sample_2 to them 
           sample_1:
            - sample_1
@@ -169,12 +180,14 @@ a. to bin a single sample
     2. Run the concoct module of the pipeline
       
       .. code-block:: bash
+
           mgjss concoct assembly_paths.yml bam_paths.yml binning_scheme.yaml binning_output --account vdenef1
 
     This will create your binning output directory with a directory for each assembly binned. In each assembly directory there will be the binlist file and a directory of fasta files for each bin made.
     It will also run an initial checkm on these bins created and create a bin_paths.yml file where each header is the assembly binned and it is followd by the path to the binlist file from concoct.
 
     .. code-block:: yaml
+
           sample_1:
            - path/to/binlist/
           sample_2:
@@ -185,6 +198,7 @@ a. to bin a single sample
     1. Create a anvio_scheme.yml file where each header is an assembly name you have binned and a list of all sample mappings you want to include in the coverage profile for anvio.
       
       .. code-block:: yaml
+
           # bin both assembly sample_1 and assembly sample_2 using the bams from mapping sample_1 and sample_2 to them 
           sample_1:
            - sample_1
@@ -197,6 +211,7 @@ a. to bin a single sample
     2. Run the concoct module of the pipeline
       
       .. code-block:: bash
+
           mgjss assembly_paths.yml bam_paths.yml bin_paths.yml anvio_scheme.yml anvio_output --rename_contigs --account vdenef1
 
     This will create your binning output directory with a directory for each assembly binned. In each assembly directory there will be the binlist file and a directory of fasta files for each bin made.
@@ -211,6 +226,7 @@ Once you have a set of bins for each assembly you manually refined. simply add t
 Then do the following:
    
    .. code-block:: bash
+       
        #run pyani on all the bins
        #combine checkm tables
        #convert the pyani tables using the convert_table script from https://github.com/jtevns/Pairwise_Dereplication
