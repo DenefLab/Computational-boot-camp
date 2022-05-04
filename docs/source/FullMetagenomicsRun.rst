@@ -226,19 +226,15 @@ Then do the following:
 
 you will recieve a list of genomes with the best checkm stats
 
+At this point you have a set of bins to do downstream analysis with. This could be a pangenome analysis, annotation, etc. Much of this can be done in anvio.
+
 10. Competitively map to dereplicated bins
 -------------------------------------------
 
 Once you have a set of bins to do downstream analysis simply concatenate them all into a single fasta file. make an assembly csv file like above with the path to that fasta file, and make a mapping scheme file with the new "assembly" and all the samples you would like to map to the bins. Finally run mapping like above.
 
+
 11. Some extra notes
 ----------------------
 Any files that are not put into a csv file used by the pipeline are not required to move forward and can be moved once the step is finished. If you want to perform extra steps such as normalization of reads, just do that on the qced output and then use the normalized read files in the qced_fq1 and qced_fq2 columns of the fastq.csv files. File names do not matter.
-
-ONce you have a set of unique bins, you can do the mapping the same as above. the difference here is you will merge all of the bins into one fasta file.
-Make an assembly_paths file like above, but with the path to this new merged fasta. Make a mapping scheme as well where the header is the new merged fasta and
-the following list is all the samples you want to map to it.
-
-11. Create final merged anvio Databases
--------------------------------------------
 
