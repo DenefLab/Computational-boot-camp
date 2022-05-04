@@ -4,6 +4,9 @@ Here is a full metagenomics run example. It will have code both using and not us
 Have tips of where to compress and move outputs. And show how to work with multiple assemblies and 
 bins sets. It will also have notes on what to be thinking about as you move through each step.
 
+To use the pipeline simply module load singularity and conda activate /nfs/turbo/lsa-dudelabs/conda_envs/miniconda/envs/metaG_pipeline/
+
+
 1. Create your working directory
 ----------------------------------
 This is the root of your project. Here you will create directories for each analysis you perform. This makes
@@ -185,7 +188,7 @@ that points to the binlists created by concoct to use in anvio.
 
 7. Create ANVIO Databases for Manual Refinement
 ------------------------------------------------
-    1. Create a anvio_scheme.yml file where each header is an assembly name you have binned and a list of all sample mappings you want to include in the coverage profile for anvio.
+    1. Create a anvio_scheme.yml file where each header is an assembly name you have binned and a list of all sample mappings you want to include in the coverage profile for anvio. you will also need to module load samtools and anvio.
       
       .. code-block:: yaml
 
