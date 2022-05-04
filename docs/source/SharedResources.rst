@@ -110,6 +110,7 @@ Available containers:
 - virsorter
 
 Available slurm scripts can be found at:
+
 /nfs/turbo/lsa-dudelabs/scripts/slurm_scripts/
 and on github at 
 https://github.com/jtevns/slurm_scripts_galore
