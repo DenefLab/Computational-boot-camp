@@ -228,8 +228,8 @@ you will recieve a list of genomes with the best checkm stats
 
 At this point you have a set of bins to do downstream analysis with. This could be a pangenome analysis, annotation, etc. Much of this can be done in anvio.
 
-10. Competitively map to dereplicated bins
--------------------------------------------
+10. Competitively map to dereplicated bins (an example of using the pipeline for other steps)
+----------------------------------------------------------------------------------------------
 
 Once you have a set of bins to do downstream analysis simply concatenate them all into a single fasta file. make an assembly csv file like above with the path to that fasta file, and make a mapping scheme file with the new "assembly" and all the samples you would like to map to the bins. Finally run mapping like above.
 
