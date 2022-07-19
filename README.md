@@ -1,2 +1,2 @@
 # Computational Boot Camp
-https://computational-bootcamp.readthedocs.io
+https://computational-boot-camp.readthedocs.io/en/latest/
