@@ -106,6 +106,16 @@ fasta files made by the assembly step
     assembly,path
     sample_1,assembly_output/sample_1/final.contigs.fa
     sample_2,assembly_output/sample_2/final.comtigs.fa
+    
+  3. run the renaming module
+    Make sure to load the anvio module on great lake (e.g., module load Bioinformatics anvio/7)
+    .. code-block:: bash
+
+        mgjss rename-contigs assemblies_set1.csv assemblies_to_rename.txt renamed_assemblies --account vdenef1
+  
+  In the code, assemblies_set1.csv is exactly the same file you make after assembly that points to the paths to the fasta files
+assemblies_to_rename.txt is a list of assemblies you want to rename, one per line (the first column of the above csv if you want them all excluding the column label from the file (assembly))
+renamed_assemblies is the output dir that will be made
 
 5. All vs All mapping for differential coverage for binning
 ------------------------------------------------------------
@@ -205,7 +215,7 @@ that points to the binlists created by concoct to use in anvio.
       
       .. code-block:: bash
 
-          mgjss assembly_paths.yml bam_paths.yml bin_paths.yml anvio_scheme.yml anvio_output --rename_contigs --account vdenef1
+          mgjss anvio assembly_paths.csv bam_paths.csv bin_paths.csv anvio_scheme.yml anvio_output --account vdenef1
 
     This will create your binning output directory with a directory for each assembly binned. In each assembly directory there will be the binlist file and a directory of fasta files for each bin made.
     It will also run an initial checkm on these bins created and create a bin_paths.yml file where each header is the assembly binned and it is followd by the path to the binlist file from concoct.
