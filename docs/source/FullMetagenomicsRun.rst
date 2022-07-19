@@ -114,9 +114,7 @@ fasta files made by the assembly step
 
         mgjss rename-contigs assemblies_set1.csv assemblies_to_rename.txt renamed_assemblies --account vdenef1
   
-  In the code, assemblies_set1.csv is exactly the same file you make after assembly that points to the paths to the fasta files
-assemblies_to_rename.txt is a list of assemblies you want to rename, one per line (the first column of the above csv if you want them all excluding the column label from the file (assembly))
-renamed_assemblies is the output dir that will be made
+  In the code, assemblies_set1.csv is exactly the same file you make after assembly that points to the paths to the fasta files, assemblies_to_rename.txt is a list of assemblies you want to rename, one per line (the first column of the above csv if you want them all excluding the column label from the file (assembly)), and renamed_assemblies is the output dir that will be made
 
 
 5. All vs All mapping for differential coverage for binning
