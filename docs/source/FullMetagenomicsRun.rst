@@ -190,7 +190,7 @@ a. to bin a single sample
     
     Note that the file anvio needs as input is actually a tab delimited file without a header and the bin names cannot start with a number, so the csv files need to be converted to a tsv, first line removed and bin_ added to each bin name (need to wrap this into the script at some point). So you will need to run the following command for each of the bin list files (clustering_merged.csv files) in the concoct_output directory created by the binning:
     
-    .. code-block:: csv
+    .. code-block:: bash
     
 	      sed -e 's/,/\tbin_/g'  -e '/contig_id*/d' clustering_merged.csv > clustering_merged.tsv
 
@@ -229,6 +229,20 @@ Once done you will need to create a csv file that points to the binlists created
 
 8. Manually refine bins in anvio
 ----------------------------------
+
+GO TO: https://greatlakes.arc-ts.umich.edu/pun/sys/dashboard/batch_connect/sessions
+
+START A SESSION: WITH 1 CORE AND 32 GB MEMORY - Note that you must make sure no conda env gets loaded in your .bashrc file OR THE REMOTE DESKTOP WILL NOT WORK
+
+Open the terminal window and type:
+
+.. code-block:: bash
+
+   module load Bioinformatics
+   module load anvio/7 
+   anvi-refine -p merged_profile_dbs/ND-12/PROFILE.db -c contig_dbs/ND-12-CONTIGS.db -C 'concoct' -b bin_238
+
+Then open up the browser and type: localhost:8080
 
 9.  Merge and dereplicate bin sets
 ----------------------------------
