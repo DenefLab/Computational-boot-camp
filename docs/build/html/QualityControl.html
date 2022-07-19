@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quality Control &mdash; DuDe Computational Boot Camp 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="DuDe Computational Boot Camp 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to Computational Boot Camp’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> DuDe Computational Boot Camp
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quality Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example-workflow">Basic Example Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trimming-adapters">Trimming Adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-poor-quality-bases">Removing Poor Quality Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-replicate-reads">Removing Replicate Reads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-your-read-data">Understanding Your Read Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fastqc-test-information">FastQC Test Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-quality-plot">Read Quality Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DuDe Computational Boot Camp</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quality Control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/QualityControl.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quality-control">
+<h1>Quality Control<a class="headerlink" href="#quality-control" title="Permalink to this headline">¶</a></h1>
+<p>Once your samples have been sequenced some quality control measures must be taken.</p>
+<dl class="docutils">
+<dt>The major steps are:</dt>
+<dd><ul class="first last simple">
+<li>adapter trimming</li>
+<li>low quality base trimming</li>
+<li>dereplication of raw reads</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="basic-example-workflow">
+<h2>Basic Example Workflow<a class="headerlink" href="#basic-example-workflow" title="Permalink to this headline">¶</a></h2>
+<p>raw reads -&gt; finding adapters -&gt; adapter trimming -&gt; poor base trimming -&gt; dereplication -&gt; read pairing (if paired end)</p>
+</div>
+<div class="section" id="trimming-adapters">
+<h2>Trimming Adapters<a class="headerlink" href="#trimming-adapters" title="Permalink to this headline">¶</a></h2>
+<p>Adapters are synthetic sequences added to the beginning and ends of reads for sequencing. Because tehse sequences are not part of your experimental sample it is imiperitive that they are removed. If they are not completely removed they can contaminate you assemblies and appear downstream in contigs making results from you analysis not make sense and also useless.</p>
+</div>
+<div class="section" id="removing-poor-quality-bases">
+<h2>Removing Poor Quality Bases<a class="headerlink" href="#removing-poor-quality-bases" title="Permalink to this headline">¶</a></h2>
+<p>A result of the sequencing technology is that reads towards the beginning and ends of sequences suffer from a loss of quality. Quality in this cacse refers to the confidence of the base call. The quantitative measure of the quality of a base is its phred score.</p>
+<p>A general overview of phred scores:</p>
+<img alt="_images/Screenshot_4.png" src="_images/Screenshot_4.png" />
+<p>this quality information is found in fastq files which is why these are the files you will start with.</p>
+</div>
+<div class="section" id="removing-replicate-reads">
+<h2>Removing Replicate Reads<a class="headerlink" href="#removing-replicate-reads" title="Permalink to this headline">¶</a></h2>
+<p>Assuming you are doing shotgun sequencing, no read should have an replicates (exact matches to itself). Therefore if there are exact matches present in the fastq files they need to be removed. Replicates can appear do to a biological sifnificance, but they are more often a result of a pcr bias. In this case it is better to be safe and just remove all duplicate reads.</p>
+</div>
+<div class="section" id="understanding-your-read-data">
+<h2>Understanding Your Read Data<a class="headerlink" href="#understanding-your-read-data" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a basic understanding of the steps of QC you might be asking yourself &#8220;Okay, but how do I know my reads need to be QCed or if the QC succeeded?&#8221;. The easiest way is by using a software called fastqc which provides a visual inspection for your data.</p>
+<dl class="docutils">
+<dt>FastQC creates a summary of your reads BASED ON A SUBSET of your raw data. It proved 3 levels of quality for each of its summaries:</dt>
+<dd><ul class="first last simple">
+<li>passed : your reaads &#8220;pass&#8221; the quality test</li>
+<li>warning : there might be something wrong with your reads based on the test</li>
+<li>fail : your reads failed the test and action must be taken</li>
+</ul>
+</dd>
+</dl>
+<p>FastQC levels should be taken with a grain of salt!!!!</p>
+<p>Not all sequencing data is created equal. They serve different purposes. For example in DNA-seq you do not expect read replicates in the data. However in RNA-seq the replicates ARE your data. Therefore the tests are not an end all be all. In the next sectionas we will use and actual metagenomics xperiment fastqc report to explain each test and how a raw data set compares to a QCed set.</p>
+</div>
+<div class="section" id="fastqc-test-information">
+<h2>FastQC Test Information<a class="headerlink" href="#fastqc-test-information" title="Permalink to this headline">¶</a></h2>
+<p>Previously I have stated general patterns of sequencing data such as poor bases and the beginning and ends of reads. In this section you can see the visual representations of this as well.</p>
+<div class="section" id="read-quality-plot">
+<h3>Read Quality Plot<a class="headerlink" href="#read-quality-plot" title="Permalink to this headline">¶</a></h3>
+<p>This is simpy a boxplot where the y-axis is the quality score and the x is the postion along the read.</p>
+<p>The first image is before QC:</p>
+<img alt="_images/Screenshot_2.png" src="_images/Screenshot_2.png" />
+<p>Here you can easily see that the quality of the base calls in the beginning and end of the read are significantly lower than the quality of the base calls in the middle of the read.</p>
+<p>This visualization is useful for evaluating the trimming of poor bases. Ideally you would try to bring each of the box plots into the green section of the graph. This is usually easy to do, but in some cases it may be hard and removing too many of the poor base calls will be detrimental to your data set</p>
+<p>Here is the same sample after removing poor quality bases:</p>
+<img alt="_images/Screenshot_5.png" src="_images/Screenshot_5.png" />
+<p>As you can see the vast majority of reads fall in the green along most of the read except for the very end. This is okay and we would be able to move forward.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Computational Boot Camp’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jacob Evans.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
