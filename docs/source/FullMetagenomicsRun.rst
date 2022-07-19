@@ -107,8 +107,9 @@ fasta files made by the assembly step
     sample_1,assembly_output/sample_1/final.contigs.fa
     sample_2,assembly_output/sample_2/final.comtigs.fa
     
-  3. run the renaming module
+  c. run the renaming module
     Make sure to load the anvio module on great lake (e.g., module load Bioinformatics anvio/7)
+    
     .. code-block:: bash
 
         mgjss rename-contigs assemblies_set1.csv assemblies_to_rename.txt renamed_assemblies --account vdenef1
@@ -116,6 +117,7 @@ fasta files made by the assembly step
   In the code, assemblies_set1.csv is exactly the same file you make after assembly that points to the paths to the fasta files
 assemblies_to_rename.txt is a list of assemblies you want to rename, one per line (the first column of the above csv if you want them all excluding the column label from the file (assembly))
 renamed_assemblies is the output dir that will be made
+
 
 5. All vs All mapping for differential coverage for binning
 ------------------------------------------------------------
