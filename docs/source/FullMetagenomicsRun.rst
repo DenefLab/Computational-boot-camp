@@ -186,15 +186,22 @@ a. to bin a single sample
 
           mgjss concoct assembly_paths.csv bam_paths.csv binning_scheme.yaml binning_output --account vdenef1
 
-    This will create your binning output directory with a directory for each assembly binned. In each assembly directory there will be the binlist file and a directory of fasta files for each bin made. It will also run an initial checkm on these bins created. Once done you will need to create a csv file
-that points to the binlists created by concoct to use in anvio.
+    This will create your binning output directory with a directory for each assembly binned. In each assembly directory there will be the binlist file and a directory of fasta files for each bin made. It will also run an initial checkm on these bins created. 
+    
+    Note that the file anvio needs as input is actually a tab delimited file without a header and the bin names cannot start with a number, so the csv files need to be converted to a tsv, first line removed and bin_ added to each bin name (need to wrap this into the script at some point). So you will need to run the following command for each of the bin list files (clustering_merged.csv files) in the concoct_output directory created by the binning:
+    
+    .. code-block:: csv
+    
+	      sed -e 's/,/\tbin_/g'  -e '/contig_id*/d' clustering_merged.csv > clustering_merged.tsv
+
+Once done you will need to create a csv file that points to the binlists created by concoct to use in anvio.
 
     .. code-block:: csv
 
           # bin both assembly sample_1 and assembly sample_2 using the bams from mapping sample_1 and sample_2 to them 
           assembly,binlist
-          sample_1,path/to/clustering_merged.csv
-          sample_2,path/to/clustering_merged.csv
+          sample_1,path/to/clustering_merged.tsv
+          sample_2,path/to/clustering_merged.tsv
 
 7. Create ANVIO Databases for Manual Refinement
 ------------------------------------------------
